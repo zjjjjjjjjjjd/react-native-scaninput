@@ -62,7 +62,7 @@ export default class ScanInput extends Component {
     const { style = {height: 45, width: 200}, inputStyle = {height: '100%', width: '100%'} } = this.props;
     return (
       <View style={style}>
-        <NativeInput ref='NativeInput' {...this.props} style={inputStyle} />
+        <NativeInput ref='NativeInput' {...this.props} style={inputStyle} onNativeChange={this.onNativeChange} onNativeEnter={this.onNativeEnter} />
       </View>)
   }
 }
