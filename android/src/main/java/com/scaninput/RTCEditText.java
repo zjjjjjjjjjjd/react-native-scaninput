@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
@@ -72,6 +73,9 @@ public class RTCEditText extends SimpleViewManager<EditText> {
       } catch (Exception e) {//TODO: handle exception
       }
     }
+    input.setInputType(InputType.TYPE_CLASS_TEXT);
+    input.setLines(1);
+    input.setMaxLines(1);
     input.setSingleLine(true);
 
     input.addTextChangedListener(new TextWatcher() {
@@ -82,10 +86,6 @@ public class RTCEditText extends SimpleViewManager<EditText> {
 
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.d("onTextChanged1",charSequence.toString());
-        Log.d("onTextChanged2",i+"");
-        Log.d("onTextChanged3",i1+"");
-        Log.d("onTextChanged4",i2+"");
         if(charSequence.length() == 0) {
           input.setSelection(0);
         }else if(i2 > 1){ // 扫描输入
@@ -147,20 +147,20 @@ public class RTCEditText extends SimpleViewManager<EditText> {
     }
   }
 
-  @ReactProp(name = "keyboardType")
-  public void setInputType(EditText editText, String keyboardType) {
-    if(keyboardType == "numeric") { // 数字
-      editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-    }else if(keyboardType == "phone") { // 电话
-      editText.setInputType(InputType.TYPE_CLASS_PHONE);
-    }else if(keyboardType == "password") { // 密码
-      editText.setInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-    }else if(keyboardType == "decimal") { // 小数点
-      editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-    }else { // 普通
-      editText.setInputType(InputType.TYPE_CLASS_TEXT);
-    }
-  }
+//  @ReactProp(name = "keyboardType")
+//  public void setInputType(EditText editText, String keyboardType) {
+//    if(keyboardType == "numeric") { // 数字
+//      editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+//    }else if(keyboardType == "phone") { // 电话
+//      editText.setInputType(InputType.TYPE_CLASS_PHONE);
+//    }else if(keyboardType == "password") { // 密码
+//      editText.setInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+//    }else if(keyboardType == "decimal") { // 小数点
+//      editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+//    }else { // 普通
+//      editText.setInputType(InputType.TYPE_CLASS_TEXT);
+//    }
+//  }
 
   @ReactProp(name = "enabled")
   public void setEnabled(EditText editText, Boolean enabled) {
