@@ -1,23 +1,30 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  requireNativeComponent,View,findNodeHandle, UIManager, StyleSheet
+  requireNativeComponent, View, findNodeHandle, UIManager, StyleSheet
 } from 'react-native';
 
 const nativeInput = {
-    name:'NativeInput',
-    propTypes:{
-      placeholder: PropTypes.string,
-      underline: PropTypes.boolean,
-      keyboardType: PropTypes.string,
-      enabled: PropTypes.boolean,
-      multiline: PropTypes.boolean,
-      maxLength: PropTypes.int,
-      ...View.propTypes
-    }
+  name: 'NativeInput',
+  propTypes: {
+    placeholder: PropTypes.string,
+    underline: PropTypes.boolean,
+    keyboardType: PropTypes.string,
+    enabled: PropTypes.boolean,
+    multiline: PropTypes.boolean,
+    maxLength: PropTypes.int,
+    ...View.propTypes
+  }
 }
 let NativeInput = requireNativeComponent('NativeInput', nativeInput);
 export default class ScanInput extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setValue(nextProps.value);
+    }
+    return true;
+  }
+
   onNativeChange = (e) => {
     this.props.onChangeText && this.props.onChangeText(e.nativeEvent.text);
   }
@@ -59,7 +66,7 @@ export default class ScanInput extends Component {
   }
 
   render() {
-    const { style = {height: 45, width: 200}, inputStyle = {height: '100%', width: '100%'} } = this.props;
+    const { style = { height: 45, width: 200 }, inputStyle = { height: '100%', width: '100%' } } = this.props;
     return (
       <View style={style}>
         <NativeInput ref='NativeInput' {...this.props} style={inputStyle} onNativeChange={this.onNativeChange} onNativeEnter={this.onNativeEnter} />
