@@ -18,6 +18,12 @@ const nativeInput = {
 }
 let NativeInput = requireNativeComponent('NativeInput', nativeInput);
 export default class ScanInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.value = props.value;
+  }
+
   shouldComponentUpdate(nextProps) {
     if (nextProps.value !== this.value) {
       this.setValue(this.value = nextProps.value);
