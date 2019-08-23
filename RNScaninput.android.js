@@ -19,13 +19,14 @@ const nativeInput = {
 let NativeInput = requireNativeComponent('NativeInput', nativeInput);
 export default class ScanInput extends Component {
   shouldComponentUpdate(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setValue(nextProps.value);
+    if (nextProps.value !== this.value) {
+      this.setValue(this.value = nextProps.value);
     }
     return true;
   }
 
   onNativeChange = (e) => {
+    this.value = e;
     this.props.onChangeText && this.props.onChangeText(e.nativeEvent.text);
   }
 
