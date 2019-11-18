@@ -32,7 +32,7 @@ export default class ScanInput extends Component {
   }
 
   onNativeChange = (e) => {
-    this.value = e;
+    this.value = e.nativeEvent.text;
     this.props.onChangeText && this.props.onChangeText(e.nativeEvent.text);
   }
 

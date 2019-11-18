@@ -64,14 +64,12 @@ public class RTCEditText extends SimpleViewManager<EditText> {
         method = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
         method.setAccessible(true);
         method.invoke(input, false);
-      } catch (Exception e) {//TODO: handle exception
-      }
+      } catch (Exception e) {}
       try {
         method = cls.getMethod("setSoftInputShownOnFocus", boolean.class);
         method.setAccessible(true);
         method.invoke(input, false);
-      } catch (Exception e) {//TODO: handle exception
-      }
+      } catch (Exception e) { }
     }
     input.setInputType(InputType.TYPE_CLASS_TEXT);
     input.setLines(1);
